@@ -1,0 +1,7 @@
+Got it! To keep the game background light and only use the dark/yellow theme for
+ interactive elements (buttons, squares, info panels), update your main container 
+ to use a light background (e.g., bg-gray-100). Keep the dark/yellow accents 
+ for buttons and panels.
+
+--- ^^ --for the website
+
