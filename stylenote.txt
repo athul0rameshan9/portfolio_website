@@ -5,3 +5,5 @@ Got it! To keep the game background light and only use the dark/yellow theme for
 
 --- ^^ --for the website
 
+npm install leaflet react-leaflet
+this was installed for map things
