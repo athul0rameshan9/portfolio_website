@@ -1,5 +1,7 @@
 import React from 'react';
 import SkillsCarousel from '../components/SkillsCarousel';
+import Projects from '../components/projects';
+
 
 // GitHub SVG Icon Component
 const GitHubIcon = ({ size = 20, className = "" }) => (
@@ -84,70 +86,10 @@ const Home = () => {
                     </div>
                 </section>
 
-                {/* 3. Projects Preview Section */}
-                <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-                        🕹️ Check Out My Projects
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                            <div className="flex items-center mb-4">
-                                <span className="text-3xl mr-3">🎮</span>
-                                <h3 className="text-xl font-bold text-yellow-400">Tic-Tac-Toe</h3>
-                            </div>
-                            <p className="text-gray-300 mb-4">
-                                A classic game with a modern React twist. Try to beat me!
-                            </p>
-                            <button className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-yellow-400 hover:text-gray-900 transition font-medium shadow">
-                                Play Now →
-                            </button>
-                        </div>
-                        
-                        <div className="bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 cursor-pointer">
-                            <div className="flex items-center mb-4">
-                                <span className="text-3xl mr-3">🌦️</span>
-                                <h3 className="text-xl font-bold text-yellow-400">Weather App</h3>
-                            </div>
-                            <p className="text-gray-300 mb-4">
-                                Check the weather anywhere, anytime. Click and explore!
-                            </p>
-                            <button className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-yellow-400 hover:text-gray-900 transition font-medium shadow">
-                                Check Weather →
-                            </button>
-                        </div>
-                    </div>
-                </section>
+                {/* 3. Projects Section - Now using the imported component */}
+                <Projects />
 
-                {/* 4. Fun Facts Section */}
-                <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-                        🎨 About Me / Fun Facts
-                    </h2>
-                    <div className="bg-gray-800 rounded-lg shadow-lg p-8">
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <div className="space-y-4">
-                                <div className="flex items-center">
-                                    <span className="text-2xl mr-3">🔍</span>
-                                    <p className="text-gray-300">Currently exploring: LLMs and GenAI</p>
-                                </div>
-                                <div className="flex items-center">
-                                    <span className="text-2xl mr-3">🎵</span>
-                                    <p className="text-gray-300">Music helps me think</p>
-                                </div>
-                            </div>
-                            <div className="space-y-4">
-                                <div className="flex items-center">
-                                    <span className="text-2xl mr-3">📷</span>
-                                    <p className="text-gray-300">Side hobby: photography & gaming</p>
-                                </div>
-                                <div className="flex items-center">
-                                    <span className="text-2xl mr-3">🐍</span>
-                                    <p className="text-gray-300">Python is my spirit animal</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                
 
                 {/* 5. Connect Section */}
                 <section className="text-center">
@@ -157,7 +99,7 @@ const Home = () => {
                     <p className="text-lg text-gray-600 mb-6">
                         Want to work with me? Let's talk.
                     </p>
-                    <div className="flex justify-center gap-4">
+                    <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <a href="https://www.linkedin.com/in/athul-ramesh-b36733324/" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center">
                             <LinkedInIcon size={20} className="mr-2" />
                             LinkedIn
