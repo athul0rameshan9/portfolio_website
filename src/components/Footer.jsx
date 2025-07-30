@@ -46,7 +46,7 @@ export default function Footer() {
               <p>© 2025 Dev Playground</p>
               <div className="flex space-x-4 mt-4">
                 <a 
-                  href="https://github.com/athul0rameshan9" 
+                  href="https://github.com/athul0rameshan9/portfolio_website" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-yellow-400 transition"

@@ -17,7 +17,7 @@ export default function Navbar() {
                             to="/"
                             className="text-white font-bold text-xl hover:text-yellow-400 transition"
                         >
-                            Dev Playground
+                            🗂️ bin/athul
                         </NavLink>
                     </div>
                     

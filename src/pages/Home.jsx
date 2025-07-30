@@ -92,7 +92,7 @@ const Home = () => {
                     </p>
                     <p className="text-lg text-gray-500 mb-4">
                         I'm passionate about <span className="font-semibold text-indigo-600">AI/ML</span> and currently diving deep into 
-                        <span className="font-semibold text-purple-600"> Generative AI</span> 🤖 — exploring how we can build intelligent systems that create, solve, and innovate.
+                        <span className="font-semibold text-purple-600"> Generative AI</span> exploring how we can build intelligent systems that create, solve, and innovate.
                     </p>
                     <p className="text-lg text-gray-500 mb-4">
                         I started this project just to study React, but after implementing some cool features, 
