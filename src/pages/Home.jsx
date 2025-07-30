@@ -91,6 +91,10 @@ const Home = () => {
                         I like building apps that make life easier — or just fun.
                     </p>
                     <p className="text-lg text-gray-500 mb-4">
+                        I'm passionate about <span className="font-semibold text-indigo-600">AI/ML</span> and currently diving deep into 
+                        <span className="font-semibold text-purple-600"> Generative AI</span> 🤖 — exploring how we can build intelligent systems that create, solve, and innovate.
+                    </p>
+                    <p className="text-lg text-gray-500 mb-4">
                         I started this project just to study React, but after implementing some cool features, 
                         I decided to turn it into my portfolio website! 
                     </p>
@@ -112,7 +116,7 @@ const Home = () => {
                     
                     {/* Original skill tags (you can keep or remove these) */}
                     <div className="flex flex-wrap justify-center gap-3">
-                        {['React', 'JavaScript', 'Python', 'ML', 'AI', 'Firebase', 'Tailwind CSS', 'Node.js'].map((skill) => (
+                        {['React', 'Python', 'ML', 'AI', 'Node.js', 'REST API', 'Git'].map((skill) => (
                             <span 
                                 key={skill}
                                 className="px-4 py-2 bg-gray-700 text-white rounded hover:bg-yellow-400 hover:text-gray-900 transition font-medium shadow"
@@ -135,13 +139,13 @@ const Home = () => {
                         Check out my coding challenges, competitions, and ML experiments
                     </p>
                     <div className="flex justify-center items-center gap-8 max-w-3xl mx-auto">
-                        <a href="https://leetcode.com/u/athul0rameshan9/" target="_blank" rel="noopener noreferrer" className="group">
+                        <a href="https://leetcode.com/u/athulramesh98/" target="_blank" rel="noopener noreferrer" className="group">
                             <LeetCodeIcon size={40} className="group-hover:scale-110 transition-all duration-200" />
                         </a>
                         <a href="https://www.kaggle.com/athulrameshan" target="_blank" rel="noopener noreferrer" className="group">
                             <KaggleIcon size={60} className="hover:opacity-80 group-hover:scale-110 transition-all duration-200" />
                         </a>
-                        <a href="https://huggingface.co/athul0rameshan9" target="_blank" rel="noopener noreferrer" className="group">
+                        <a href="https://huggingface.co/athu98" target="_blank" rel="noopener noreferrer" className="group">
                             <HuggingFaceIcon size={40} className="hover:opacity-80 group-hover:scale-110 transition-all duration-200" />
                         </a>
                         <a href="https://github.com/athul0rameshan9" target="_blank" rel="noopener noreferrer" className="group">
@@ -164,7 +168,7 @@ const Home = () => {
                         </a>
                         
                         <a href="mailto:athulramesh98@gmail.com" className="group">
-                            <EmailIcon size={80} className="hover:opacity-80 group-hover:scale-110 transition-all duration-200" />
+                            <EmailIcon size={90} className="hover:opacity-80 group-hover:scale-110 transition-all duration-200" />
                         </a>
                     </div>
                 </section>

@@ -32,7 +32,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="/usingapi" className="text-gray-300 hover:text-yellow-400 transition">
-                  API Demo
+                  Wether APP
                 </a>
               </li>
             </ul>
@@ -46,21 +46,14 @@ export default function Footer() {
               <p>© 2025 Dev Playground</p>
               <div className="flex space-x-4 mt-4">
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/athul0rameshan9" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-yellow-400 transition"
                 >
                   GitHub
                 </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-yellow-400 transition"
-                >
-                  Twitter
-                </a>
+                
               </div>
             </div>
           </div>
