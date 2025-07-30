@@ -76,7 +76,7 @@ export default function Navbar() {
                                     }`
                                 }
                             >
-                                Using API
+                                Weather APP
                             </NavLink>
                         </li>
                     </ul>
@@ -161,7 +161,7 @@ export default function Navbar() {
                                     }`
                                 }
                             >
-                                Using API
+                                WeatherApp 
                             </NavLink>
                         </div>
                     </div>

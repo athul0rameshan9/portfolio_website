@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 function Square({ value, onSquareClick }) {
   return (
@@ -13,15 +13,11 @@ function Square({ value, onSquareClick }) {
 
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) {
-      return;
+    if (calculateWinner(squares) || squares[i] || !xIsNext) {
+      return; // Prevent human from playing when it's computer's turn
     }
     const nextSquares = squares.slice();
-    if (xIsNext) {
-      nextSquares[i] = 'X';
-    } else {
-      nextSquares[i] = 'O';
-    }
+    nextSquares[i] = 'X';
     onPlay(nextSquares);
   }
 
@@ -32,7 +28,7 @@ function Board({ xIsNext, squares, onPlay }) {
   } else if (winner) {
     status = 'Winner: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = xIsNext ? 'Your turn (X)' : "Computer's turn (O)...";
   }
 
   return (
@@ -59,17 +55,95 @@ function Board({ xIsNext, squares, onPlay }) {
   );
 }
 
+// Minimax Algorithm Implementation
+function minimax(squares, depth, isMaximizing) {
+  const winner = calculateWinner(squares);
+  
+  // Terminal states
+  if (winner === 'O') return 10 - depth; // Computer wins (prefer shorter paths)
+  if (winner === 'X') return depth - 10; // Human wins (avoid, prefer longer paths)
+  if (winner === 'Draw') return 0; // Draw
+  
+  if (isMaximizing) {
+    // Computer's turn (O) - maximize score
+    let maxEval = -Infinity;
+    for (let i = 0; i < 9; i++) {
+      if (squares[i] === null) {
+        squares[i] = 'O';
+        const evaluation = minimax(squares, depth + 1, false);
+        squares[i] = null;
+        maxEval = Math.max(maxEval, evaluation);
+      }
+    }
+    return maxEval;
+  } else {
+    // Human's turn (X) - minimize score
+    let minEval = Infinity;
+    for (let i = 0; i < 9; i++) {
+      if (squares[i] === null) {
+        squares[i] = 'X';
+        const evaluation = minimax(squares, depth + 1, true);
+        squares[i] = null;
+        minEval = Math.min(minEval, evaluation);
+      }
+    }
+    return minEval;
+  }
+}
+
+function getBestMove(squares) {
+  let bestMove = -1;
+  let bestValue = -Infinity;
+  
+  for (let i = 0; i < 9; i++) {
+    if (squares[i] === null) {
+      squares[i] = 'O';
+      const moveValue = minimax(squares, 0, false);
+      squares[i] = null;
+      
+      if (moveValue > bestValue) {
+        bestMove = i;
+        bestValue = moveValue;
+      }
+    }
+  }
+  
+  return bestMove;
+}
+
 export default function Game() {
+  // useState hook to store array of all game states (board configurations)
+  // Enables time travel - undo/redo functionality by keeping history of moves
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  
+  // useState hook to track current position in game history
+  // Determines which move we're viewing and whose turn it is
   const [currentMove, setCurrentMove] = useState(0);
+  
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
-  function handlePlay(nextSquares) {
+  const handlePlay = useCallback((nextSquares) => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-  }
+  }, [history, currentMove]);
+
+  // Computer move effect
+  useEffect(() => {
+    if (!xIsNext && !calculateWinner(currentSquares)) {
+      const timer = setTimeout(() => {
+        const bestMove = getBestMove(currentSquares.slice());
+        if (bestMove !== -1) {
+          const nextSquares = currentSquares.slice();
+          nextSquares[bestMove] = 'O';
+          handlePlay(nextSquares);
+        }
+      }, 500); // Small delay for better UX
+      
+      return () => clearTimeout(timer);
+    }
+  }, [xIsNext, currentSquares, handlePlay]);
 
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
@@ -77,16 +151,19 @@ export default function Game() {
 
   function redo(){
     if (currentMove < history.length - 1) {
-      jumpTo(currentMove + 1);
-    }
-    else {
+      // Redo by 2 moves to maintain player turn (skip computer move)
+      const nextMove = Math.min(currentMove + 2, history.length - 1);
+      jumpTo(nextMove);
+    } else {
       alert("No more moves to redo");
     }
   }
 
   function undo() {
     if (currentMove > 0) {
-      jumpTo(currentMove - 1);
+      // Undo by 2 moves to maintain player turn (undo both computer and player moves)
+      const nextMove = Math.max(currentMove - 2, 0);
+      jumpTo(nextMove);
     } else {
       alert("No more moves to undo");
     }
@@ -134,24 +211,26 @@ export default function Game() {
           <div className="p-2 bg-yellow-100 text-gray-800 rounded shadow text-center w-full text-sm">
             <strong>How to Play:</strong>
             <br />
-            Click an empty square to place your mark (X starts).
+            You are X, computer is O. Click an empty square to make your move.
             <br />
-            Get 3 in a row—horizontally, vertically, or diagonally—to win.
+            The computer uses minimax algorithm - it's unbeatable!
             <br />
-            Use undo/redo to review or change moves.
+            Use undo/redo to review moves.
           </div>
         </div>
       </div>
       <div className="max-w-md p-4 bg-blue-100 text-gray-800 rounded-lg shadow-md text-center">
-        <strong>React useState in Action:</strong>
+        <strong>Minimax Algorithm in Action:</strong>
         <br />
-        This game uses <code className="bg-gray-200 px-1 rounded">useState</code> hooks to remember:
+        useState hooks remember all the board positions throughout the game.
         <br />
-        • Game history (all board states)
+        The computer evaluates all possible moves and chooses the optimal one.
         <br />
-        • Current move position
+        • +10 points for computer win
         <br />
-        React automatically re-renders when state changes, keeping the UI in sync!
+        • -10 points for human win
+        <br />
+        • 0 points for draw
       </div>
     </div>
   );
@@ -171,15 +250,12 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        
         return squares[a];
     }
-    
   }
-  
   
   if (!squares.includes(null)) {
-    
     return 'Draw';
   }
+  return null;
 }
