@@ -1,3 +1,11 @@
+# Athul's Portfolio Website
+
+Welcome to my personal portfolio website! This project showcases my skills, projects, and experience as a developer.
+
+## 🚀 Live Demo
+
+Visit my portfolio at: [https://portfolio-website-pi-kohl-75.vercel.app/]
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
